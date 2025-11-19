@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from clip_anchors_to_image import clip_anchors_to_image
 
 def generate_anchors(feature_map_size, strides, image_size, scales=(64, 128, 256), ratios=(0.5, 1, 2), device='cpu'):
     H, W = feature_map_size
