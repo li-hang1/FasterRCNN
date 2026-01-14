@@ -8,6 +8,7 @@ class FastRCNNHead(nn.Module):
         self.fc2 = nn.Linear(1024, 1024)
         self.cls_score = nn.Linear(1024, num_classes + 1)
         self.bbox_pred = nn.Linear(1024, num_classes + 4)
+
     def forward(self, x):
         x = x.flatten(start_dim=1)
         x = F.relu(self.fc1(x))
