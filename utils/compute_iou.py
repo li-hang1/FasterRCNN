@@ -20,8 +20,8 @@ def compute_iou(proposals, gt_boxes):
     area_gt = (gt_boxes[..., 2] - gt_boxes[..., 0]) * (gt_boxes[..., 3] - gt_boxes[..., 1])
 
     union = area_boxes + area_gt - inter                           # [num_proposals, num_gt_boxes]
-
     iou = inter / union.clamp(min=1e-6)
+
     return iou
 
 if __name__ == "__main__":

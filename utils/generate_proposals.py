@@ -1,8 +1,8 @@
 import torch.nn.functional as F
 
-from nms import nms
-from apply_deltas_to_anchors import apply_deltas_to_anchors
-from clip_anchors_to_image import clip_anchors_to_image
+from .nms import nms
+from .apply_deltas_to_anchors import apply_deltas_to_anchors
+from .clip_anchors_to_image import clip_anchors_to_image
 
 def generate_proposals(cls_logits, bbox_pred, anchors, img_size, post_nms_top_n=300, nms_threshold=0.7):
     """
@@ -11,7 +11,7 @@ def generate_proposals(cls_logits, bbox_pred, anchors, img_size, post_nms_top_n=
     anchors: shape [num_anchors, 4]
     img_size: (H, W), The original image size
     return:
-        List[Tensor[N_i, 4]], N_i represents the number of remaining anchors.
+        List[Tensor[N_i, 4]], N_i represents the number of remaining anchors for the i-th sample in the batch.
     """
     B, _, H, W = cls_logits.shape
     cls_probs = F.softmax(cls_logits.permute(0, 2, 3, 1).reshape(B, -1, 2), dim=-1)[:, :, 1]

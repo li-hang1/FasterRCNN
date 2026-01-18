@@ -14,8 +14,7 @@ def roi_align(features, rois, img_size, output_size=(7, 7)):
     H_out, W_out = output_size
     H_img, W_img = img_size
 
-    stride_h = H_img / H_f
-    stride_w = W_img / W_f
+    stride_h, stride_w = H_img / H_f, W_img / W_f
 
     roi_features = []
 
@@ -38,8 +37,7 @@ def roi_align(features, rois, img_size, output_size=(7, 7)):
             grid_y, grid_x = torch.meshgrid(grid_y, grid_x, indexing='ij')
 
             # Normalize to [-1, 1]
-            grid_x = (grid_x / (W_f - 1)) * 2 - 1
-            grid_y = (grid_y / (H_f - 1)) * 2 - 1
+            grid_x, grid_y = (grid_x / (W_f - 1)) * 2 - 1, (grid_y / (H_f - 1)) * 2 - 1
 
             grid = torch.stack((grid_x, grid_y), dim=-1)   # [H_out, W_out, 2]
             grid = grid.unsqueeze(0)                       # [1, H_out, W_out, 2]
