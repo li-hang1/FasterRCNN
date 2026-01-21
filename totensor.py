@@ -10,9 +10,9 @@ save_dir = "data/dataset.pt"
 transform = transforms.Compose([transforms.ToTensor()])
 images, targets = [], []
 
-for fname in os.listdir(img_dir):
-    img_path = os.path.join(img_dir, fname)
-    label_path = os.path.join(label_dir, os.path.splitext(fname)[0] + ".txt")
+for img_name in os.listdir(img_dir):
+    img_path = os.path.join(img_dir, img_name)
+    label_path = os.path.join(label_dir, os.path.splitext(img_name)[0] + ".txt")
     image = Image.open(img_path).convert('RGB')
     image = transform(image)
     images.append(image)

@@ -1,20 +1,11 @@
 import torch
 
-from models.model import FasterRCNN
-from utils import show_image_with_boxes
-
-
-import torch
-import torch.nn.functional as F
-from torchvision.ops import nms
-from PIL import Image
-import torchvision.transforms as T
-import matplotlib.pyplot as plt
-
 def decode_bbox(rois, deltas):
     """
-    rois: [N, 4]
-    deltas: [N, 4] (tx, ty, tw, th)
+    rois: tensor, shape [N_i, 4]
+    deltas: tensor, shape [N_i, 4], (tx, ty, tw, th)
+    return:
+        tensor, shape [N_i, 4], (x1, y1, x2, y2)
     """
     widths  = rois[:, 2] - rois[:, 0]
     heights = rois[:, 3] - rois[:, 1]
@@ -36,19 +27,8 @@ def decode_bbox(rois, deltas):
     return torch.stack([x1, y1, x2, y2], dim=1)
 
 
-
-
-
-
-
-
-
-
-
-
-num_classes=6
-model = FasterRCNN(img_size=(640, 640), num_classes=num_classes)
-model.load_state_dict(torch.load("pretrained/faster_r_cnn.pth"))
-model.eval()
-
-cls_score, bbox_pred, proposals, rpn_cls, rpn_bbox, anchors = model()
+if __name__ == '__main__':
+    rois = torch.rand(10, 4)
+    deltas = torch.rand(10, 4)
+    boxes = decode_bbox(rois, deltas)
+    print(boxes.shape)

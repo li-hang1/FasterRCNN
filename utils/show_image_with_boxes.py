@@ -19,7 +19,7 @@ def show_image_with_boxes(img_path, dets, class_names=None):
             rect = patches.Rectangle((x1, y1), w, h, linewidth=2, edgecolor='red', facecolor='none')
             ax.add_patch(rect)
             if class_names is not None:
-                label = f"{class_names[int(cls)]}: {score:.2f}"
+                label = f"{class_names[int(cls)-1]}: {score:.2f}"
             else:
                 label = f"{int(cls)}: {score:.2f}"
             ax.text(x1, y1-5, label, color="yellow", fontsize=8)
