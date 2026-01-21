@@ -1,9 +1,9 @@
 import torch
 from torch import nn
 
-from backbone import Backbone
-from RPN import RPN
-from head import FastRCNNHead
+from .backbone import Backbone
+from .RPN import RPN
+from .head import FastRCNNHead
 from utils.generate_proposals import generate_proposals
 from utils.generate_anchors import generate_anchors
 from utils.roi_align import roi_align

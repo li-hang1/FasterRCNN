@@ -1,7 +1,7 @@
 import torch
 
-from compute_iou import compute_iou
-from bbox2delta import bbox2delta
+from .compute_iou import compute_iou
+from .bbox2delta import bbox2delta
 
 
 def assign_proposals_to_gt(proposals, gt_boxes, gt_labels, iou_threshold=0.1):
