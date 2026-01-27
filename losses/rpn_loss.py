@@ -3,7 +3,7 @@ import torch.nn.functional as F
 
 from utils.assign_anchors import assign_anchors
 
-def rpn_loss(rpn_cls_logits, rpn_bbox_pred, anchors, gt_boxes, positive_iou=0.7, negative_iou=0.3, lambda_reg=1.0, lambda_cls_pos=1.0, lambda_cls_neg=1.0,):
+def rpn_loss(rpn_cls_logits, rpn_bbox_pred, anchors, gt_boxes, positive_iou=0.7, negative_iou=0.3, lambda_reg=1.0, lambda_cls_pos=2.0, lambda_cls_neg=1.0):
     """
     rpn_cls_logits: tensor, shape [B, 2 * k, H/stride_H, W/stride_W]
     rpn_bbox_pred: tensor,shape [B, 4 * k, H/stride_H, W/stride_W]

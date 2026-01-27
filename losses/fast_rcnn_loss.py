@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 
-def fast_rcnn_loss(class_logits, bbox_pred, gt_labels, gt_boxes, num_classes, lambda_reg=1.0, lambda_cls_pos=1.0, lambda_cls_neg=1.0):
+def fast_rcnn_loss(class_logits, bbox_pred, gt_labels, gt_boxes, num_classes, lambda_reg=4.0, lambda_cls_pos=2.0, lambda_cls_neg=1.0):
     """
     cls_score: List[Tensor[N_i, num_classes + 1]]
     bbox_pred: List[Tensor[N_i, num_classes * 4]]

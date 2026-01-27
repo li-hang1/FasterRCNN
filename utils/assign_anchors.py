@@ -42,6 +42,7 @@ def assign_anchors(anchors, gt_boxes, positive_iou=0.7, negative_iou=0.3):
         hg = (g[:, 3] - g[:, 1]).clamp(min=0) + 1e-12
         xg = g[:, 0] + 0.5 * wg
         yg = g[:, 1] + 0.5 * hg
+
         dx = (xg - xa) / wa
         dy = (yg - ya) / ha
         dw = torch.log(wg / wa)

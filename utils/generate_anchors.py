@@ -3,7 +3,7 @@ import numpy as np
 
 from .clip_anchors_to_image import clip_anchors_to_image
 
-def generate_anchors(feature_map_size, strides, img_size, scales=(64, 128, 256), ratios=(0.5, 1, 2), device='cpu'):
+def generate_anchors(feature_map_size, strides, img_size, scales=(60, 160, 320), ratios=(0.5, 1, 2), device='cpu'):
     """
     feature_map_size: tuple (backbone_H, backbone_W), The height and width of the output of Backbone.
     img_size: tuple (H, W), The height and width of the original image.

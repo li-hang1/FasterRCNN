@@ -21,5 +21,7 @@ if __name__ == '__main__':
     import torch
     x = torch.randn(4, 3, 640, 640)
     model = Backbone()
+    total_params = sum(p.numel() for p in model.parameters())
+    print(total_params)
     output = model(x)
     print(output.shape)

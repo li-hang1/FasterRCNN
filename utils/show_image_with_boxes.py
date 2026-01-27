@@ -22,7 +22,7 @@ def show_image_with_boxes(img_path, dets, class_names=None):
                 label = f"{class_names[int(cls)-1]}: {score:.2f}"
             else:
                 label = f"{int(cls)}: {score:.2f}"
-            ax.text(x1, y1-5, label, color="yellow", fontsize=8)
+            ax.text(x1, y1-5, label, color="yellow", fontsize=8, backgroundcolor="black")
     plt.axis('off')
     plt.show()
 
@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 cls, x, y, w, h = map(float, [cls, x, y, w, h])
                 x, y, w, h = x*640, y*640, w*640, h*640
                 x1, y1, x2, y2 = x-w/2, y-h/2, x+w/2, y+h/2
-                dets.append([x1, y1, x2, y2, 1.0, cls])
+                dets.append([x1, y1, x2, y2, 1.0, cls+1])
         dets = torch.tensor(dets)
         show_image_with_boxes(img_path, dets, class_names)
 

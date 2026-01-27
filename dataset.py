@@ -18,7 +18,14 @@ class DetectionDataset(Dataset):
         return self.images.shape[0]
 
     def __getitem__(self, idx):
-        return self.images[idx], self.targets[idx]
+        image = self.images[idx]
+
+        target = self.targets[idx]
+        boxes = target["boxes"].clone() * 640
+
+        target = {"boxes": boxes, "labels": target["labels"]}
+
+        return image, target
 
 
 def collate_fn(batch):
