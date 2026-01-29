@@ -17,7 +17,7 @@ def assign_proposals_to_gt(proposals, gt_boxes, gt_labels, iou_threshold=0.5):
     iou = compute_iou(proposals, gt_boxes)  # [num_proposals, num_gt_boxes]
     max_iou, max_idx = iou.max(dim=1)       # [num_proposals]
 
-    labels = torch.full((num_proposals,), -1, dtype=torch.long, device=proposals.device)
+    labels = torch.zeros(num_proposals, dtype=torch.long, device=proposals.device)
     bbox_targets = torch.zeros((num_proposals, 4), device=proposals.device)
 
     pos_inds = max_iou >= iou_threshold     # [num_proposals]
@@ -40,4 +40,5 @@ if __name__ == "__main__":
     gt_labels = torch.randint(1, 7, (10,))
     labels, bbox_targets = assign_proposals_to_gt(proposals, gt_boxes, gt_labels)
     print(f"labels shape: {labels.shape}, bbox_targets shape: {bbox_targets.shape}")
+
 
